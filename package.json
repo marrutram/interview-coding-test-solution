@@ -1,0 +1,32 @@
+{
+  "name": "interview-coding-test-solution",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Rut Martinez Ramirez",
+  "license": "ISC",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "lint": "eslint src",
+    "test": "jest"
+  },
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "lodash": "^4.17.11",
+    "body-parser": "^1.18.3",
+    "http": "0.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "debug": "^4.1.1",
+    "eslint": "^5.12.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "nodemon": "^1.18.9"
+  }
+}

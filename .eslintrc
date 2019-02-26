@@ -1,0 +1,55 @@
+{
+    "parser": "babel-eslint",
+    "extends": [
+      "standard"
+    ],
+    "plugins": [
+      "babel"
+    ],
+    "globals": {
+      "test": true,
+      "expect": true,
+      "assert": true
+    },
+    "rules": {
+      "key-spacing": 0,
+      "max-len": [
+        2,
+        120,
+        2
+      ],
+      "comma-dangle": [
+        "error",
+        "never"
+      ],
+      "no-use-before-define": [
+        "error",
+        {
+          "functions": false,
+          "classes": false
+        }
+      ],
+      "no-param-reassign": [
+        "error",
+        {
+          "props": false
+        }
+      ],
+      "no-unused-expressions": [
+        "error",
+        {
+          "allowTernary": true
+        }
+      ],
+      "object-curly-spacing": [
+        "error",
+        "always"
+      ],
+      "space-before-function-paren": [
+        "error",
+        "never"
+      ],
+      "semi": ["error", "always"]
+    }
+  }
+  

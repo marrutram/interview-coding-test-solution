@@ -1,0 +1,13 @@
+version: "3.1"
+
+services:
+
+    backend:
+        container_name: interview-coding-test-solution
+        image: node:10.15.0
+        working_dir: /usr/src/app/
+        command: bash -c 'npm i && npm run start'
+        volumes:    
+            - "./:/usr/src/app/"
+        ports:    
+            - "3000:3000"
