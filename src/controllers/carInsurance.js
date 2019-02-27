@@ -1,10 +1,10 @@
 class CarInsurance {
     
-    constructor(products = []) {
+    constructor(products = [], priceMax = 50, priceMin = 0, amountDaysDecrease = 1) {
       this.products = products;
-      this.priceMax = 50;
-      this.priceMin = 0;
-      this.amountDaysDecrease = 1;
+      this.priceMax = priceMax;
+      this.priceMin = priceMin;
+      this.amountDaysDecrease = amountDaysDecrease;
     }
 
     setTopPrice(price) {
@@ -16,7 +16,7 @@ class CarInsurance {
     }
 
     isSellbyDate(sellIn) {
-      return sellIn < 0
+      return sellIn <= 0
     }
 
     getPriceDependingDate(sellIn, beforeSellbyDate, afterSellbyDate) {
@@ -24,13 +24,13 @@ class CarInsurance {
     }
 
     getIncreasePriceDependingDay(sellIn) {
-      if (sellIn < 5) {
+      if (sellIn <= 5) {
         return this.getPriceDependingDate(sellIn, 3, 0)
       }
-      if (sellIn < 10) {
+      if (sellIn <= 10) {
         return this.getPriceDependingDate(sellIn, 2, 0)
       }
-      return this.getPriceDependingDate(sellIn, 1, 2);
+      return this.getPriceDependingDate(sellIn, 1, 0);
     }
 
     updatePrice() {
@@ -40,31 +40,34 @@ class CarInsurance {
           case 'Mega Coverage':
             break;
           case 'Special Full Coverage':
-            this.products[i].sellIn -= this.amountDaysDecrease;
-            this.products[i].price  += this.getIncreasePriceDependingDay(this.products[i].sellIn);
+            const newPrice = this.getIncreasePriceDependingDay(this.products[i].sellIn);;
+            if (newPrice === 0) {
+              this.products[i].price = 0;
+            } else {
+              this.products[i].price += this.getIncreasePriceDependingDay(this.products[i].sellIn);
+            }
             this.products[i].price = this.setTopPrice(this.products[i].price);
             this.products[i].price = this.setBottomPrice(this.products[i].price);
-        
+            this.products[i].sellIn -= this.amountDaysDecrease;
             break;
           case 'Full Coverage':
-            this.products[i].sellIn -= this.amountDaysDecrease;
-            this.products[i].price  += this.getIncreasePriceDependingDay(this.products[i].sellIn);
+            this.products[i].price  += this.getPriceDependingDate(this.products[i].sellIn, 1, 2);
             this.products[i].price = this.setTopPrice(this.products[i].price);
             this.products[i].price = this.setBottomPrice(this.products[i].price);
-        
+            this.products[i].sellIn -= this.amountDaysDecrease;
             break
           case 'Super Sale':
-            this.products[i].sellIn -= this.amountDaysDecrease;
             this.products[i].price  -= this.getPriceDependingDate(this.products[i].sellIn, 2, 2);
             this.products[i].price = this.setTopPrice(this.products[i].price);
             this.products[i].price = this.setBottomPrice(this.products[i].price);
+            this.products[i].sellIn -= this.amountDaysDecrease;
             break
           
           default:
-            this.products[i].sellIn -= this.amountDaysDecrease;
             this.products[i].price  -= this.getPriceDependingDate(this.products[i].sellIn, 1, 2);
             this.products[i].price = this.setTopPrice(this.products[i].price);
             this.products[i].price = this.setBottomPrice(this.products[i].price);
+            this.products[i].sellIn -= this.amountDaysDecrease;
         }
       }
   
