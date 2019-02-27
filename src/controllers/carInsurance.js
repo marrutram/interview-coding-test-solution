@@ -39,6 +39,7 @@ class CarInsurance {
         switch(this.products[i].name) {
           case 'Mega Coverage':
             break;
+
           case 'Special Full Coverage':
             const newPrice = this.getIncreasePriceDependingDay(this.products[i].sellIn);;
             if (newPrice === 0) {
@@ -46,28 +47,25 @@ class CarInsurance {
             } else {
               this.products[i].price += this.getIncreasePriceDependingDay(this.products[i].sellIn);
             }
-            this.products[i].price = this.setTopPrice(this.products[i].price);
-            this.products[i].price = this.setBottomPrice(this.products[i].price);
-            this.products[i].sellIn -= this.amountDaysDecrease;
             break;
+
           case 'Full Coverage':
             this.products[i].price  += this.getPriceDependingDate(this.products[i].sellIn, 1, 2);
-            this.products[i].price = this.setTopPrice(this.products[i].price);
-            this.products[i].price = this.setBottomPrice(this.products[i].price);
-            this.products[i].sellIn -= this.amountDaysDecrease;
             break
+
           case 'Super Sale':
             this.products[i].price  -= this.getPriceDependingDate(this.products[i].sellIn, 2, 2);
-            this.products[i].price = this.setTopPrice(this.products[i].price);
-            this.products[i].price = this.setBottomPrice(this.products[i].price);
-            this.products[i].sellIn -= this.amountDaysDecrease;
             break
-          
+
           default:
             this.products[i].price  -= this.getPriceDependingDate(this.products[i].sellIn, 1, 2);
-            this.products[i].price = this.setTopPrice(this.products[i].price);
-            this.products[i].price = this.setBottomPrice(this.products[i].price);
-            this.products[i].sellIn -= this.amountDaysDecrease;
+            
+        }
+
+        if(this.products[i].name !== 'Mega Coverage') {
+          this.products[i].price = this.setTopPrice(this.products[i].price);
+          this.products[i].price = this.setBottomPrice(this.products[i].price);
+          this.products[i].sellIn -= this.amountDaysDecrease;
         }
       }
   
